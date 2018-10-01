@@ -17,17 +17,17 @@ $ yarn build
 Go to `localhost:3000`, you should be able to see an interactive searchable map
 
 ### More about .env file
-REACT_APP_API_URL=(The url of the backend api(ursa_major), i.e. https://github.com/sourcemap/ursa_major, e.g. http://localhost:8000)
+REACT_APP_API_URL=(The url of the backend api [ursa_major](https://github.com/sourcemap/ursa_major), e.g. http://localhost:8000)
 
 REACT_APP_API_KEY=The api key that ursa_minor app needs when it send HTTP request to ursa_major
 
 REACT_APP_MAPBOX_TOKEN=Your mapbox token
 
-REACT_APP_CLICKABLE_LIST=true Enable the clickable search result list feature
+REACT_APP_CLICKABLE_LIST=true(Enable the clickable search result list feature)
 
-REACT_APP_MAINTENANCE=true Show "this site is under mainrenance" page
+REACT_APP_MAINTENANCE=true(Show "this site is under mainrenance" page)
 
-REACT_APP_MAP_THEME=true Show multiple map themes
+REACT_APP_MAP_THEME=true(Show multiple map themes)
 
 REACT_APP_FILESTACK_KEY=Your filestack key, this app uses filestack to save user profile photos 
 
