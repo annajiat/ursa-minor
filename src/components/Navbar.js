@@ -21,8 +21,8 @@ class Navbar extends PureComponent {
   render() {
     const { user } = this.props
     const aboutLinks = [
-      { text: 'Team', url: 'https://www.info.openapparel.org/team', type: 'external' },
-      { text: 'Board & Governance', url: 'https://www.info.openapparel.org/board', type: 'external' }
+      { text: 'Team', url: 'https://info.openapparel.org/team', type: 'external' },
+      { text: 'Board & Governance', url: 'https://info.openapparel.org/board', type: 'external' }
     ]
     const reset = () => this.props.actions.selectFactory(null)
 
@@ -37,8 +37,8 @@ class Navbar extends PureComponent {
           >
             <Link to="/" className="navButton" onClick={ reset }>HOME</Link>
             <NavbarDropdown title="ABOUT" links={ aboutLinks } />
-            <a target="_blank" className="navButton" rel="noopener noreferrer" href="https://www.info.openapparel.org/faq/">FAQs</a>
-            <a target="_blank" className="navButton" rel="noopener noreferrer" href="https://www.info.openapparel.org/apiinstructions">API</a>
+            <a target="_blank" className="navButton" rel="noopener noreferrer" href="https://info.openapparel.org/faq/">FAQs</a>
+            <a target="_blank" className="navButton" rel="noopener noreferrer" href="https://info.openapparel.org/apiinstructions">API</a>
             <span>
               { user.loaded
                 ? <Link to="/contribute" className="navButton">CONTRIBUTE</Link>

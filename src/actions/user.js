@@ -59,15 +59,17 @@ export const loadUser = () => dispatch => {
   })
 }
 
-// Post the new source's name to Ursa
-const updateSourceName = user => {
-  const { uid, name } = user
+// Post the new source's name and contributorType to Ursa
+const updateSourceNameOrType = user => {
+  const { uid, name, contributorType } = user
 
   if (!uid || !name) return
+  const data = { name }
+  if (contributorType) data.user_type = contributorType
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_API_URL}/updateSourceName/${uid}?key=${process.env.REACT_APP_API_KEY}`,
-    data: { name }
+    data
   })
   .then(response => {
     if (response.status === 200) toast('Contributor account created / updated successfully.')
@@ -75,7 +77,7 @@ const updateSourceName = user => {
   .catch(error => toast(error.message))
 }
 
-export const updateUser = (user, nameUpdated) => dispatch => {
+export const updateUser = (user, nameOrTypeUpdated) => dispatch => {
   const { currentUser } = firebase.auth()
   const credential = firebase.auth.EmailAuthProvider.credential(currentUser.email, user.password)
   const { password, ...userWithoutPassword } = user
@@ -92,8 +94,8 @@ export const updateUser = (user, nameUpdated) => dispatch => {
       .update({ ...userWithoutPasswordAndPhoto })
       .then(() => dispatch({ type: 'ADD_USER', ...user }))
       .then(() => {
-        if (!nameUpdated) toast('Contributor account created / updated successfully.')
-        else updateSourceName(user)
+        if (!nameOrTypeUpdated) toast('Contributor account created / updated successfully.')
+        else updateSourceNameOrType(user)
       })
       .catch(error => toast(error.message))
     })

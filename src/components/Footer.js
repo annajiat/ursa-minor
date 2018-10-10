@@ -11,13 +11,13 @@ const links = [
     newTab: true
   },
   {
-    href: 'https://www.info.openapparel.org/tos/',
+    href: 'https://info.openapparel.org/tos/',
     text: 'Terms of Service',
     external: true,
     newTab: true
   },
   {
-    href: 'https://www.info.openapparel.org/contact/',
+    href: 'https://info.openapparel.org/contact/',
     text: 'Support',
     external: true,
     newTab: true

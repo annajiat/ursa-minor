@@ -14,7 +14,7 @@ import AuthLogin from './containers/AuthLogin'
 import Profile from './containers/Profile'
 import Contribute from './containers/Contribute'
 import Map from './containers/Map'
-import BetaAccessLogin from './containers/BetaAccessLogin'
+// import BetaAccessLogin from './containers/BetaAccessLogin'
 import requireAuth from './requireAuth'
 import Lists from './containers/Lists'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -73,7 +73,8 @@ class App extends Component {
   }
 
   render() {
-    const { user, actions: { checkAccess } } = this.props
+    // const { user, actions: { checkAccess } } = this.props
+    const { user } = this.props
     const ifMaintenance = process.env.REACT_APP_MAINTENANCE
     return (
       <ErrorBoundary>
@@ -85,28 +86,28 @@ class App extends Component {
                 ? <Maintenance />
                 : (
                   <div>
-                    { user.betaAccess
-                      ? (
-                        <Router history={ history }>
-                          <div className="App">
-                            <Navbar user={ user } />
-                            <div>
-                              <Switch>
-                                <Route exact path="/" component={ Map } />
-                                <Route path="/auth/register" component={ AuthRegister } />
-                                <Route path="/auth/login" component={ AuthLogin } />
-                                <Route path="/profile/:id" component={ Profile } />
-                                <Route path="/contribute" component={ requireAuth(Contribute) } />
-                                <Route path="/lists" component={ requireAuth(Lists) } />
-                              </Switch>
-                            </div>
-                            <Footer />
-                            <ToastContainer position="bottom-center" transition={ Slide } />
-                          </div>
-                        </Router>
-                      )
-                      : <BetaAccessLogin checkAccess={ checkAccess } />
-                    }
+                    {/* { user.betaAccess
+                      ? ( */}
+                    <Router history={ history }>
+                      <div className="App">
+                        <Navbar user={ user } />
+                        <div>
+                          <Switch>
+                            <Route exact path="/" component={ Map } />
+                            <Route path="/auth/register" component={ AuthRegister } />
+                            <Route path="/auth/login" component={ AuthLogin } />
+                            <Route path="/profile/:id" component={ Profile } />
+                            <Route path="/contribute" component={ requireAuth(Contribute) } />
+                            <Route path="/lists" component={ requireAuth(Lists) } />
+                          </Switch>
+                        </div>
+                        <Footer />
+                        <ToastContainer position="bottom-center" transition={ Slide } />
+                      </div>
+                    </Router>
+                  )
+                    {/* //   : <BetaAccessLogin checkAccess={ checkAccess } />
+                    // } */}
                   </div>
                 )}
             </div>

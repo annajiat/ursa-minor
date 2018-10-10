@@ -125,25 +125,40 @@ class Lists extends Component {
 
   handleChangeRowsPerPage = event => this.setState({ rowsPerPage: event.target.value })
 
-  // Recursively flattens an array down to a deepness of 1
-  flatten = array => array.reduce((acc, val) => (Array.isArray(val) ? acc.concat(this.flatten(val)) : acc.concat(val)), [])
-
   factoriesCSV = data => {
-    const cleanedData = this.flatten(data.map(d => d.matched.map(t => {
-      const { country, name, address } = d.data
-      const matchedName = t.name
-      const matchedAddress = t.address
-      return {
-        _id: d._id,
-        country,
-        name,
-        address,
-        matchedName,
-        matchedAddress,
-        confirm: t.confirm,
-        matchedId: t.nameId
+    const cleanedData = []
+    data.forEach(temp => {
+      const { country, name, address } = temp.data
+      if (temp.matched && temp.matched.length && temp.matched.length > 0) {
+        temp.matched.forEach(m => {
+          const matchedName = m.name
+          const matchedAddress = m.address
+          const factoryObj = {
+            _id: temp._id,
+            country,
+            name,
+            address,
+            matchedName,
+            matchedAddress,
+            confirm: m.confirm,
+            matchedId: m.nameId._id
+          }
+          cleanedData.push(factoryObj)
+        })
+      } else {
+        const factoryObj = {
+          _id: temp._id,
+          country,
+          name,
+          address,
+          matchedName: 'No Match',
+          matchedAddress: 'No Match',
+          confirm: 'No Match',
+          matchedId: 'No Match'
+        }
+        cleanedData.push(factoryObj)
       }
-    })))
+    })
     return parse(cleanedData, { fields: ['_id', 'country', 'name', 'address', 'matchedName', 'matchedAddress', 'confirm', 'matchedId'] })
   }
 
@@ -305,7 +320,7 @@ class Lists extends Component {
                                       <TableCell padding="none" />
                                       <TableCell padding="dense" />
                                       <TableCell padding="none" className="notranslate">{ m.name }</TableCell>
-                                      <TableCell padding="none" className="notranslate" style={{ fontSize: '10px' }}>{ m.nameId }</TableCell>
+                                      <TableCell padding="none" className="notranslate" style={{ fontSize: '10px' }}>{ m.nameId._id }</TableCell>
                                       <TableCell padding="dense" className="notranslate" style={{ fontSize: '10px' }}>{ m.address }</TableCell>
                                       <TableCell padding="dense">
                                         <ShowOnly if={ n.processed !== undefined }>

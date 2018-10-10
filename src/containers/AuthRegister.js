@@ -197,7 +197,7 @@ class AuthRegister extends Component {
             </div>
             <div className="form__field">
               <Checkbox onChange={ this.updateCheckbox('newsletterOptIn') } text="Sign up for OAR newsletter" />
-              <Checkbox onChange={ this.updateCheckbox('termsOptIn') } text="Agree to " link={{ text: 'Terms of Services', url: 'https://www.info.openapparel.org/tos/' }} />
+              <Checkbox onChange={ this.updateCheckbox('termsOptIn') } text="Agree to " link={{ text: 'Terms of Services', url: 'https://info.openapparel.org/tos/' }} />
             </div>
             <Button
               text="Register"

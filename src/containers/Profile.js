@@ -70,7 +70,7 @@ class Profile extends Component {
     otherContributor: '',
     website: '',
     photo: '',
-    nameUpdated: false,
+    nameOrTypeUpdated: false,
     recentList: {}
   }
 
@@ -111,8 +111,8 @@ class Profile extends Component {
   }
 
   saveChanges = () => {
-    const { nameUpdated, ...user } = this.state
-    this.props.actions.updateUser(user, nameUpdated)
+    const { nameOrTypeUpdated, ...user } = this.state
+    this.props.actions.updateUser(user, nameOrTypeUpdated)
   }
 
   updateInputField = field => event => {
@@ -121,7 +121,7 @@ class Profile extends Component {
 
     this.setState(attribute)
 
-    if (field === 'name') this.setState({ nameUpdated: true })
+    if (field === 'name' || field === 'contributorType') this.setState({ nameOrTypeUpdated: true })
   }
 
   formValid = () => ['name', 'description', 'contributorType', 'password', 'email'].every(key => this.state[key])
